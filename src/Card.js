@@ -46,7 +46,7 @@ class Card extends Component {
                     </div>*/}
                     <div className="card-body">
                         <h5 className="card-title">{data.Title} {data.Year}</h5>
-                        <a href="#" className="btn btn-primary">Save</a>
+                        <a href="/" className="btn btn-primary">Save</a>
                     </div>
                     <ul className="list-group list-group-flush">
                       {

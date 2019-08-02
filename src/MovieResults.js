@@ -22,14 +22,17 @@ class MovieResults extends Component {
     let list;
     if (this.props.results.length > 0) {
       list = this.props.results.map((movie, index) =>
-        <li key={index} className="list-group-item justify-content-between">
-          {movie.Title}
-          <button 
-            id={movie.Title}
-            onClick={this.clickHandler} 
-            type="button" 
-            className="btn btn-primary btn-sm">select
-          </button>
+        <li key={index} className="d-flex list-group-item justify-content-between">
+          <div>{movie.Title}</div>
+          <div>
+            <button 
+              id={movie.Title}
+              onClick={this.clickHandler} 
+              type="button" 
+              className="btn btn-primary btn-sm">select
+            </button>
+          </div>
+          
         </li>
       );
     } else {
