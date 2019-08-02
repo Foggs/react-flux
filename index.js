@@ -1,25 +1,15 @@
 const express = require('express');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const keys = require('./config/keys');
-
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const authRoutes = require('./routes/authRoutes');
+
+require('./services/passport');
 
 const app = express();
+// pass the app into the routes Object to attach routes 
+authRoutes(app)
 
-passport.use(new GoogleStrategy({
-    clientID: keys.GOOGLE_CLIENT_ID,
-    clientSecret: keys.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/auth/google/callback"
-  }, 
-  (accessToken, refreshToken, profile, done) => {
-    console.log('profile', profile);
-    console.log('accessToken', accessToken);
-    console.log('refreshToken', refreshToken);
-  }
-));
  
 
 /* MIDDLEWARE */
@@ -48,13 +38,7 @@ var opts = {
 //     res.sendFile(path.resolve('client', 'build', 'index.html'));
 // });
 
-app.get('/auth/google', 
-    passport.authenticate('google', {
-    scope: ['profile', 'email']
-}));
 
-app.get('/auth/google/callback', 
-    passport.authenticate('google'));
 
 // app.get('/auth/google', (req, res) => {
 //     res.sendFile(path.resolve('client', 'build', 'index.html'));
