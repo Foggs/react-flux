@@ -9,7 +9,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
   User.findById(id).then(user => {
-    done(null,user);
+    done(null, user);
   });
 });
 
@@ -18,22 +18,20 @@ passport.use(
     {
       clientID: keys.GOOGLE_CLIENT_ID,
       clientSecret: keys.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/auth/google/callback"
+      callbackURL: "http://localhost:5000/auth/google/callback",
+      proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       console.log("accessToken:", accessToken);
       // search collection for profile.id, returns Promise
-      User.findOne({ googleId: project.id }).then(existingUser => {
-        // we have a record wit the ID
-        if (existingUser) {
-          done(null, existingUser);
-        } else {
-          // no record found create new User
-          new User({ googleId: profile.id })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+      const existingUser = await User.findOne({ googleId: project.id });
+      // we have a record wit the ID
+      if (existingUser) {
+        return done(null, existingUser);
+      }
+      // no record found create new User
+      const newUser = await new User({ googleId: profile.id }).save()
+          done(null, user);
     }
   )
 );
