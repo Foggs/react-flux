@@ -1,9 +1,8 @@
 import React from 'react';
-import './jumbotron.scss';
+import './jumbotron.css';
 
 
 const Jumbotron = (props) => {
-  const greeting = 'Hello Function Component!';
 
   return (
     <div className="jumbotron jumbotron-fluid">
