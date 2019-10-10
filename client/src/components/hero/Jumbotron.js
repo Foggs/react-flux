@@ -1,5 +1,6 @@
 import React from 'react';
 import './jumbotron.css';
+import popcorn from './images/popcorn.jpg';
 
 
 const Jumbotron = (props) => {

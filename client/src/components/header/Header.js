@@ -1,33 +1,20 @@
 import React, { Component } from "react";
+import './Header.css';
 
 class Header extends Component {
   renderContent() {
-    console.log(this.props.auth)
-    switch (this.props.auth) {
-      case null:
-        return;
-      case false:
-        return (
-          <li className="nav-item">
-            <a className="nav-link" href="/auth/google">
-              Login
-            </a>
-          </li>
-        )
-
-      default:
-        return (
-        <div>
-        <li className="nav-item">
-          <a className="nav-link" href="/api/logout">
-            Logout
-          </a>
-        </li>
-
-        </div>
-      )
-    }
+    console.log(this.props.auth);
+    if(this.props.auth === null) return;
+    var bool = this.props.auth ? "Logout" : "Login"
+    return (
+      <li className="nav-item">
+        <a className="nav-link" href="/auth/google">
+          {bool}
+        </a>
+      </li>
+    );
   }
+
   render() {
     return (
       <div className="container-fluid">
@@ -42,7 +29,7 @@ class Header extends Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
             </button>
 
             <div

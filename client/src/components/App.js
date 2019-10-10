@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import {BrowserRouter, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import Header from "../Header";
-import Jumbotron from "../Jumbotron";
+import Header from "./header/Header";
+import Jumbotron from "./hero/Jumbotron";
 import SearchForm from "../SearchForm";
 import MovieResults from "../MovieResults";
 import Card from "../Card";
@@ -28,15 +28,13 @@ class App extends Component {
   componentDidMount() {
     // check if the user is logged in, call redux action creator
     this.props.fetchUser();
+  }
 
-  }
   componentWillUnmount() {}
-  componentDidUpdate() {
-    console.log("componentDidUpdate");
-  }
-  shouldComponentUpdate() {
-    return true;
-  }
+
+  componentDidUpdate() { console.log("componentDidUpdate") }
+
+  shouldComponentUpdate() { return true }
 
   handleSubmit(val) {
     // e.preventDefault();

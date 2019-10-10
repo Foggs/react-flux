@@ -14,7 +14,6 @@ class MovieResults extends Component {
     e.preventDefault();
     console.log(e.target.id);
     this.props.clickHandler(e.target.id);
-  
   }
 
 
@@ -32,7 +31,7 @@ class MovieResults extends Component {
               className="btn btn-primary btn-sm">select
             </button>
           </div>
-          
+          <img className="img-thumbnail" src={movie.Poster} alt="" />
         </li>
       );
     } else {

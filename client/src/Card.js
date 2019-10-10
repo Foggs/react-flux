@@ -36,7 +36,7 @@ class Card extends Component {
         key === "imdbRating" ||
         key === "imdbVotes"
       )
-        continue;
+      continue;
       this.arr.push(`${key}: ${value}`);
     }
   }
@@ -65,8 +65,8 @@ class Card extends Component {
               </a>
             </div>
             <ul className="list-group list-group-flush">
-              {this.arr.map(n => (
-                <li className="list-group-item">{n}</li>
+              {this.arr.map( (n,i) => (
+                <li className="list-group-item" key={i}>{n}</li>
               ))}
             </ul>
             <div className="card-footer text-muted">2 days ago</div>
